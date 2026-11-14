@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <!-- ============================================================
+       HEAD: metadata halaman
+       ============================================================ -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dashboard Inventory &amp; Cashflow Manager: pantau penjualan, pengeluaran, saldo kas, dan stok usaha Anda.">
+  <title>Dashboard | Inventory &amp; Cashflow Manager</title>
+
+  <!-- Tempat menghubungkan CSS nanti, contoh:
+       <link rel="stylesheet" href="css/style.css"> -->
+</head>
+
+<body class="app">
+
+  <!-- Tautan lompat untuk pengguna keyboard dan pembaca layar -->
+  <a class="skip-link" href="#konten-utama">Lewati ke konten utama</a>
+
+  <div class="app__layout">
+
+    <!-- ============================================================
+         A. SIDEBAR NAVIGATION
+         ============================================================ -->
+    <aside class="sidebar" id="sidebar" aria-label="Bilah samping aplikasi">
+
+      <!-- A.1 Logo dan nama aplikasi -->
+      <div class="sidebar__brand">
+        <a class="brand" href="index.html">
+          <img class="brand__logo" src="assets/img/logo.svg" alt="Logo aplikasi" width="40" height="40">
+          <span class="brand__name">Inventory &amp; Cashflow Manager</span>
+        </a>
+      </div>
+
+      <!-- A.2 Navigasi utama -->
+      <nav class="sidebar__nav" aria-label="Navigasi utama">
+        <ul class="nav__list">
+          <li class="nav__item">
+            <a class="nav__link nav__link--active" href="index.html" aria-current="page">Dashboard</a>
+          </li>
+          <li class="nav__item">
+            <a class="nav__link" href="inventory.html">Inventaris</a>
+          </li>
+          <li class="nav__item">
+            <a class="nav__link" href="sales.html">Penjualan</a>
+          </li>
+          <li class="nav__item">
+            <a class="nav__link" href="purchasing.html">Pembelian</a>
+          </li>
+          <li class="nav__item">
+            <a class="nav__link" href="expenses.html">Pengeluaran</a>
+          </li>
+          <li class="nav__item">
+            <a class="nav__link" href="cashflow.html">Arus kas</a>
+          </li>
+          <li class="nav__item">
+            <a class="nav__link" href="reports.html">Laporan</a>
+          </li>
+          <li class="nav__item">
+            <a class="nav__link" href="settings.html">Pengaturan</a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- A.3 Profil pengguna -->
+      <div class="sidebar__profile">
+        <a class="profile" href="settings.html#profil">
+          <img class="profile__avatar" src="assets/img/avatar-budi-santoso.jpg" alt="Foto profil Budi Santoso" width="40" height="40">
+          <span class="profile__info">
+            <span class="profile__name">Budi Santoso</span>
+            <span class="profile__business">Toko Berkah Jaya</span>
+          </span>
+        </a>
+      </div>
+
+    </aside>
+
+    <div class="app__body">
+
+      <!-- ============================================================
+           B. HEADER
+           ============================================================ -->
+      <header class="header">
+
+        <!-- B.1 Judul halaman dan breadcrumb -->
+        <div class="header__heading">
+          <!-- Tombol buka/tutup sidebar untuk tablet dan smartphone (perlu JavaScript nanti) -->
+          <button class="header__menu-button" type="button" aria-controls="sidebar" aria-expanded="false">Menu</button>
+
+          <div class="header__title-group">
+            <h1 class="header__title">Dashboard</h1>
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+              <ol class="breadcrumb__list">
+                <li class="breadcrumb__item">
+                  <a class="breadcrumb__link" href="index.html">Beranda</a>
+                </li>
+                <li class="breadcrumb__item" aria-current="page">Dashboard</li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+
+        <!-- B.2 Alat header: pencarian, notifikasi, profil -->
+        <div class="header__tools">
+
+          <!-- Kolom pencarian -->
+          <form class="search" role="search" action="search.html" method="get">
+            <label class="search__label visually-hidden" for="pencarian-global">Cari produk, transaksi, atau pemasok</label>
+            <input class="search__input" type="search" id="pencarian-global" name="q" placeholder="Cari produk, transaksi, atau pemasok">
+            <button class="search__button" type="submit">Cari</button>
+          </form>
+
+          <!-- Notifikasi -->
+          <button class="header__notification" type="button">
+            <span class="header__notification-text">Notifikasi</span>
+            <span class="badge">3<span class="visually-hidden"> belum dibaca</span></span>
+          </button>
+
+          <!-- Informasi profil pengguna -->
+          <div class="header__profile">
+            <img class="profile__avatar" src="assets/img/avatar-budi-santoso.jpg" alt="Foto profil Budi Santoso" width="40" height="40">
+            <div class="profile__info">
+              <p class="profile__name">Budi Santoso</p>
+              <p class="profile__role">Pemilik usaha</p>
+            </div>
+          </div>
+
+        </div>
+      </header>
+
+      <!-- ============================================================
+           C. MAIN DASHBOARD
+           ============================================================ -->
+      <main class="main" id="konten-utama">
+
+        <!-- C.1 Greeting untuk pengguna -->
+        <section class="welcome" aria-labelledby="judul-sapaan">
+          <div class="welcome__text">
+            <h2 class="welcome__title" id="judul-sapaan">Selamat datang kembali, Budi!</h2>
+            <p class="welcome__description">
+              Berikut kondisi usaha Toko Berkah Jaya per
+              <time datetime="2026-11-14">Sabtu, 14 November 2026</time>.
+            </p>
+          </div>
+          <div class="welcome__actions">
+            <button class="button button--primary" type="button">Catat penjualan</button>
+            <button class="button button--secondary" type="button">Catat pengeluaran</button>
+          </div>
+        </section>
+
+        <!-- C.2 Kartu ringkasan -->
+        <section class="summary" aria-labelledby="judul-ringkasan">
+          <h2 class="section__title" id="judul-ringkasan">Ringkasan November 2026</h2>
+
+          <div class="summary__grid">
+
+            <!-- Total penjualan -->
+            <article class="summary-card summary-card--sales">
+              <h3 class="summary-card__title">Total penjualan</h3>
+              <p class="summary-card__value">
+                <data value="48750000">Rp 48.750.000</data>
+              </p>
+              <p class="summary-card__note">Naik 12,5% dibanding Oktober 2026</p>
+            </article>
+
+            <!-- Total pengeluaran -->
+            <article class="summary-card summary-card--expenses">
+              <h3 class="summary-card__title">Total pengeluaran</h3>
+              <p class="summary-card__value">
+                <data value="31200000">Rp 31.200.000</data>
+              </p>
+              <p class="summary-card__note">Naik 4,2% dibanding Oktober 2026</p>
+            </article>
+
+            <!-- Saldo kas -->
+            <article class="summary-card summary-card--balance">
+              <h3 class="summary-card__title">Saldo kas</h3>
+              <p class="summary-card__value">
+                <data value="27850000">Rp 27.850.000</data>
+              </p>
+              <p class="summary-card__note">
+                Per <time datetime="2026-11-14">14 November 2026</time>
+              </p>
+            </article>
+
+            <!-- Jumlah produk -->
+            <article class="summary-card summary-card--products">
+              <h3 class="summary-card__title">Jumlah produk</h3>
+              <p class="summary-card__value">
+                <data value="248">248 produk</data>
+              </p>
+              <p class="summary-card__note">12 produk stoknya menipis</p>
+            </article>
+
+          </div>
+        </section>
+
+        <div class="dashboard__grid">
+
+          <!-- C.3 Grafik pemasukan dan pengeluaran (container saja) -->
+          <section class="chart" aria-labelledby="judul-grafik">
+            <header class="chart__header">
+              <h2 class="section__title" id="judul-grafik">Pemasukan dan pengeluaran</h2>
+
+              <form class="chart__filter" action="#" method="get">
+                <label class="chart__filter-label" for="periode-grafik">Periode</label>
+                <select class="chart__filter-select" id="periode-grafik" name="periode">
+                  <option value="7-hari" selected>7 hari terakhir</option>
+                  <option value="30-hari">30 hari terakhir</option>
+                  <option value="bulan-ini">Bulan ini</option>
+                  <option value="tahun-ini">Tahun ini</option>
+                </select>
+                <button class="button button--secondary" type="submit">Terapkan</button>
+              </form>
+            </header>
+
+            <figure class="chart__figure">
+              <div class="chart__container" id="grafik-pemasukan-pengeluaran" data-chart="pemasukan-pengeluaran">
+                <!-- Grafik (canvas atau SVG) akan dirender di dalam container ini -->
+                <p class="chart__placeholder">Grafik pemasukan dan pengeluaran akan ditampilkan di sini.</p>
+              </div>
+              <figcaption class="chart__caption">
+                Perbandingan pemasukan dan pengeluaran harian dalam 7 hari terakhir.
+              </figcaption>
+            </figure>
+
+            <ul class="chart__legend">
+              <li class="chart__legend-item chart__legend-item--income">Pemasukan</li>
+              <li class="chart__legend-item chart__legend-item--expense">Pengeluaran</li>
+            </ul>
+          </section>
+
+          <!-- C.4 Daftar transaksi terbaru -->
+          <section class="transactions" aria-labelledby="judul-transaksi">
+            <header class="transactions__header">
+              <h2 class="section__title" id="judul-transaksi">Transaksi terbaru</h2>
+              <a class="link" href="cashflow.html">Lihat semua transaksi</a>
+            </header>
+
+            <div class="table-wrapper">
+              <table class="table table--transactions">
+                <caption class="table__caption">Enam transaksi terakhir yang tercatat</caption>
+                <thead class="table__head">
+                  <tr class="table__row">
+                    <th class="table__cell table__cell--head" scope="col">Tanggal</th>
+                    <th class="table__cell table__cell--head" scope="col">No. transaksi</th>
+                    <th class="table__cell table__cell--head" scope="col">Keterangan</th>
+                    <th class="table__cell table__cell--head" scope="col">Kategori</th>
+                    <th class="table__cell table__cell--head" scope="col">Jenis</th>
+                    <th class="table__cell table__cell--head table__cell--number" scope="col">Jumlah</th>
+                  </tr>
+                </thead>
+                <tbody class="table__body">
+                  <tr class="table__row">
+                    <td class="table__cell"><time datetime="2026-11-14">14 Nov 2026</time></td>
+                    <td class="table__cell">TRX-20261114-014</td>
+                    <td class="table__cell">Penjualan harian kasir</td>
+                    <td class="table__cell">Penjualan</td>
+                    <td class="table__cell"><span class="badge badge--income">Pemasukan</span></td>
+                    <td class="table__cell table__cell--number"><data value="3450000">Rp 3.450.000</data></td>
+                  </tr>
+                  <tr class="table__row">
+                    <td class="table__cell"><time datetime="2026-11-14">14 Nov 2026</time></td>
+                    <td class="table__cell">TRX-20261114-013</td>
+                    <td class="table__cell">Pembelian stok beras dari CV Sumber Pangan</td>
+                    <td class="table__cell">Pembelian</td>
+                    <td class="table__cell"><span class="badge badge--expense">Pengeluaran</span></td>
+                    <td class="table__cell table__cell--number"><data value="6800000">Rp 6.800.000</data></td>
+                  </tr>
+                  <tr class="table__row">
+                    <td class="table__cell"><time datetime="2026-11-13">13 Nov 2026</time></td>
+                    <td class="table__cell">TRX-20261113-012</td>
+                    <td class="table__cell">Penjualan grosir ke Warung Bu Sari</td>
+                    <td class="table__cell">Penjualan</td>
+                    <td class="table__cell"><span class="badge badge--income">Pemasukan</span></td>
+                    <td class="table__cell table__cell--number"><data value="4275000">Rp 4.275.000</data></td>
+                  </tr>
+                  <tr class="table__row">
+                    <td class="table__cell"><time datetime="2026-11-13">13 Nov 2026</time></td>
+                    <td class="table__cell">TRX-20261113-011</td>
+                    <td class="table__cell">Pembayaran listrik toko</td>
+                    <td class="table__cell">Biaya operasional</td>
+                    <td class="table__cell"><span class="badge badge--expense">Pengeluaran</span></td>
+                    <td class="table__cell table__cell--number"><data value="1250000">Rp 1.250.000</data></td>
+                  </tr>
+                  <tr class="table__row">
+                    <td class="table__cell"><time datetime="2026-11-12">12 Nov 2026</time></td>
+                    <td class="table__cell">TRX-20261112-010</td>
+                    <td class="table__cell">Penjualan online lewat marketplace</td>
+                    <td class="table__cell">Penjualan</td>
+                    <td class="table__cell"><span class="badge badge--income">Pemasukan</span></td>
+                    <td class="table__cell table__cell--number"><data value="2180000">Rp 2.180.000</data></td>
+                  </tr>
+                  <tr class="table__row">
+                    <td class="table__cell"><time datetime="2026-11-12">12 Nov 2026</time></td>
+                    <td class="table__cell">TRX-20261112-009</td>
+                    <td class="table__cell">Upah karyawan mingguan</td>
+                    <td class="table__cell">Biaya operasional</td>
+                    <td class="table__cell"><span class="badge badge--expense">Pengeluaran</span></td>
+                    <td class="table__cell table__cell--number"><data value="1800000">Rp 1.800.000</data></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- C.5 Daftar produk dengan stok menipis -->
+          <section class="low-stock" aria-labelledby="judul-stok-menipis">
+            <header class="low-stock__header">
+              <h2 class="section__title" id="judul-stok-menipis">Stok menipis</h2>
+              <a class="link" href="inventory.html">Lihat semua 12 produk</a>
+            </header>
+
+            <ul class="stock-list">
+              <li class="stock-list__item">
+                <article class="stock-item">
+                  <h3 class="stock-item__name">Beras Premium 5 kg</h3>
+                  <p class="stock-item__sku">SKU: BRS-005</p>
+                  <p class="stock-item__quantity">
+                    Sisa <data value="6">6 pcs</data> dari minimum <data value="20">20 pcs</data>
+                  </p>
+                  <p class="stock-item__status stock-item__status--critical">Kritis</p>
+                  <button class="button button--secondary" type="button" aria-label="Pesan ulang Beras Premium 5 kg">Pesan ulang</button>
+                </article>
+              </li>
+              <li class="stock-list__item">
+                <article class="stock-item">
+                  <h3 class="stock-item__name">Kopi Bubuk Robusta 250 g</h3>
+                  <p class="stock-item__sku">SKU: KPB-250</p>
+                  <p class="stock-item__quantity">
+                    Sisa <data value="5">5 pcs</data> dari minimum <data value="15">15 pcs</data>
+                  </p>
+                  <p class="stock-item__status stock-item__status--critical">Kritis</p>
+                  <button class="button button--secondary" type="button" aria-label="Pesan ulang Kopi Bubuk Robusta 250 g">Pesan ulang</button>
+                </article>
+              </li>
+              <li class="stock-list__item">
+                <article class="stock-item">
+                  <h3 class="stock-item__name">Minyak Goreng 2 L</h3>
+                  <p class="stock-item__sku">SKU: MGR-002</p>
+                  <p class="stock-item__quantity">
+                    Sisa <data value="9">9 pcs</data> dari minimum <data value="24">24 pcs</data>
+                  </p>
+                  <p class="stock-item__status stock-item__status--warning">Menipis</p>
+                  <button class="button button--secondary" type="button" aria-label="Pesan ulang Minyak Goreng 2 L">Pesan ulang</button>
+                </article>
+              </li>
+              <li class="stock-list__item">
+                <article class="stock-item">
+                  <h3 class="stock-item__name">Telur Ayam 1 kg</h3>
+                  <p class="stock-item__sku">SKU: TLR-001</p>
+                  <p class="stock-item__quantity">
+                    Sisa <data value="8">8 pcs</data> dari minimum <data value="20">20 pcs</data>
+                  </p>
+                  <p class="stock-item__status stock-item__status--warning">Menipis</p>
+                  <button class="button button--secondary" type="button" aria-label="Pesan ulang Telur Ayam 1 kg">Pesan ulang</button>
+                </article>
+              </li>
+              <li class="stock-list__item">
+                <article class="stock-item">
+                  <h3 class="stock-item__name">Gula Pasir 1 kg</h3>
+                  <p class="stock-item__sku">SKU: GLP-001</p>
+                  <p class="stock-item__quantity">
+                    Sisa <data value="12">12 pcs</data> dari minimum <data value="30">30 pcs</data>
+                  </p>
+                  <p class="stock-item__status stock-item__status--warning">Menipis</p>
+                  <button class="button button--secondary" type="button" aria-label="Pesan ulang Gula Pasir 1 kg">Pesan ulang</button>
+                </article>
+              </li>
+            </ul>
+          </section>
+
+        </div>
+      </main>
+
+      <!-- ============================================================
+           D. FOOTER
+           ============================================================ -->
+      <footer class="footer">
+        <p class="footer__copyright">
+          <small>&copy; 2026 Inventory &amp; Cashflow Manager. Hak cipta dilindungi.</small>
+        </p>
+        <p class="footer__version">
+          <small>Versi <data value="1.0.0">1.0.0</data></small>
+        </p>
+      </footer>
+
+    </div>
+  </div>
+
+</body>
+
+</html>
