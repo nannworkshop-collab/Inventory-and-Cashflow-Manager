@@ -4,10 +4,21 @@ import { supabase } from './supabaseClient.js';
 
 const PENDING_KEY = 'icm_pending_business';
 
-export async function getSession() {
-  const { data, error } = await supabase.auth.getSession();
+export async function signUp(email, password, fullName) {
+  const { data, error } = await supabase.auth.signUp({
+    email,
+    password,
+    options: {
+      data: {
+        full_name: fullName
+      },
+      emailRedirectTo:
+        'https://nannworkshop-collab.github.io/Inventory-and-Cashflow-Manager/login.html'
+    },
+  });
+
   if (error) throw error;
-  return data.session;
+  return data;
 }
 
 export async function signIn(email, password) {
