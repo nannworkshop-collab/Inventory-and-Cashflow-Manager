@@ -30,8 +30,15 @@ form.addEventListener('submit', async (event) => {
   setLoading(button, true);
   try {
     if (!session) {
-      const data = await signUp(
-        form.elements.email.value.trim(), form.elements.password.value, form.elements.full_name.value.trim());
+      console.log('MULAI SIGNUP');
+
+const data = await signUp(
+  form.elements.email.value.trim(),
+  form.elements.password.value,
+  form.elements.full_name.value.trim()
+);
+
+console.log('SIGNUP BERHASIL:', data);
         console.log('SIGNUP RESULT:', data);
         console.log('SESSION:', data.session);
       if (!data.session) { // konfirmasi email aktif
@@ -43,8 +50,13 @@ form.addEventListener('submit', async (event) => {
     }
     await createBusiness(businessName);
     window.location.replace('index.html');
-  } catch (error) {
-    showMessage(message, friendlyError(error));
+  } } catch (error) {
+  console.error('SIGNUP ERROR:', error);
+  showMessage(
+    message,
+    `${error.name}: ${error.message}`
+  );
+}
   } finally {
     setLoading(button, false);
   }
