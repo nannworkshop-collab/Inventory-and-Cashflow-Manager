@@ -1,0 +1,85 @@
+/* components.css — Komponen yang dipakai ulang: tombol, form, kartu, tabel, badge, pesan, kondisi kosong. */
+
+/* Tombol */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2);
+  min-height: 2.75rem; padding: 0 var(--space-4); font: inherit; font-weight: 600;
+  border: 1px solid transparent; border-radius: var(--radius); cursor: pointer; text-decoration: none;
+}
+.btn:disabled { opacity: 0.6; cursor: not-allowed; }
+.btn--primary { background: var(--color-primary); color: #fff; }
+.btn--primary:hover:not(:disabled) { background: var(--color-primary-hover); }
+.btn--secondary { background: var(--color-surface); color: var(--color-text); border-color: var(--color-border); }
+.btn--danger { background: var(--color-expense); color: #fff; }
+.btn--sm { min-height: 2.25rem; padding: 0 var(--space-3); font-size: 0.875rem; }
+.btn--block { width: 100%; }
+
+/* Form */
+.form-fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+.form-group { margin-bottom: var(--space-4); }
+.form-label { display: block; margin-bottom: var(--space-1); font-weight: 600; }
+.form-input, .form-select, .form-textarea {
+  width: 100%; min-height: 2.75rem; padding: var(--space-2) var(--space-3); font: inherit;
+  color: inherit; background: var(--color-surface); border: 1px solid #aeb6c2; border-radius: var(--radius);
+}
+.form-hint { margin: var(--space-1) 0 0; font-size: 0.875rem; color: var(--color-muted); }
+
+/* Pesan */
+.alert { padding: var(--space-3) var(--space-4); margin-bottom: var(--space-4); border-radius: var(--radius); border: 1px solid; }
+.alert--error { color: #7f1d1d; background: #fef2f2; border-color: #fecaca; }
+.alert--success { color: #14532d; background: #f0fdf4; border-color: #bbf7d0; }
+.alert--info { color: #1e3a8a; background: #eff6ff; border-color: #bfdbfe; }
+.toast-region { position: fixed; right: var(--space-4); bottom: var(--space-4); z-index: 200; display: grid; gap: var(--space-2); }
+.toast { padding: var(--space-3) var(--space-4); border-radius: var(--radius); color: #fff; box-shadow: var(--shadow); }
+.toast--success { background: var(--color-income); }
+.toast--error { background: var(--color-expense); }
+
+/* Kartu & statistik */
+.card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius); box-shadow: var(--shadow); padding: var(--space-4); }
+.card__title { font-size: 1rem; margin-bottom: var(--space-3); }
+.stat-card { min-width: 0; }
+.stat-card__label { margin: 0; font-size: 0.875rem; color: var(--color-muted); }
+.stat-card__value { margin: var(--space-1) 0 0; font-size: 1.5rem; font-weight: 700; }
+
+/* Tabel */
+.table { width: 100%; border-collapse: collapse; background: var(--color-surface); }
+.table th, .table td { padding: var(--space-3); text-align: left; border-bottom: 1px solid var(--color-border); white-space: nowrap; }
+.table th { font-size: 0.8125rem; text-transform: uppercase; letter-spacing: 0.03em; color: var(--color-muted); }
+
+/* Badge */
+.badge { display: inline-block; padding: 0.125rem var(--space-2); border-radius: 999px; font-size: 0.8125rem; font-weight: 600; }
+.badge--success { color: #14532d; background: #dcfce7; }
+.badge--warning { color: #78350f; background: #fef3c7; }
+.badge--danger { color: #7f1d1d; background: #fee2e2; }
+
+/* Kondisi kosong & memuat */
+.empty-state, .loading-state { padding: var(--space-8) var(--space-4); text-align: center; color: var(--color-muted); }
+.spinner {
+  display: inline-block; width: 1.5rem; height: 1.5rem; border: 3px solid var(--color-border);
+  border-top-color: var(--color-primary); border-radius: 50%; animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Dialog (kotak isian) */
+.dialog { width: min(32rem, calc(100vw - 2rem)); max-height: calc(100vh - 2rem); overflow-y: auto; padding: var(--space-6); border: 1px solid var(--color-border); border-radius: var(--radius); color: var(--color-text); background: var(--color-surface); }
+.dialog--wide { width: min(46rem, calc(100vw - 2rem)); }
+.dialog::backdrop { background: rgba(0, 0, 0, 0.45); }
+.dialog__actions { display: flex; justify-content: flex-end; gap: var(--space-2); margin-top: var(--space-4); }
+
+/* Grafik */
+.chart { width: 100%; height: auto; max-height: 16rem; color: var(--color-muted); }
+.chart-legend { display: flex; gap: var(--space-4); margin: var(--space-2) 0 0; font-size: 0.875rem; }
+.chart-legend__item { display: inline-flex; align-items: center; gap: var(--space-2); }
+.chart-legend__swatch { width: 0.75rem; height: 0.75rem; border-radius: 2px; }
+.chart-legend__swatch--income { background: var(--color-income); }
+.chart-legend__swatch--expense { background: var(--color-expense); }
+
+/* Form transaksi */
+.form-row { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
+.inline-field { display: flex; gap: var(--space-2); }
+.inline-field .form-select { flex: 1; min-width: 0; }
+.items-table td { padding: var(--space-2); vertical-align: middle; }
+.items-table .form-select { min-width: 12rem; }
+.items-table .form-input { min-width: 6rem; }
+.total-bar { display: flex; justify-content: space-between; align-items: center; padding: var(--space-3) 0; font-size: 1.125rem; font-weight: 700; }
+.form-actions { display: flex; justify-content: flex-end; gap: var(--space-2); }
