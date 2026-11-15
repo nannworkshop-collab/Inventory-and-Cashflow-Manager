@@ -38,6 +38,7 @@ form.addEventListener('submit', async (event) => {
   event.preventDefault();
 
   console.log('EVENT SUBMIT TERPANGGIL');
+  alert('SUBMIT TERPANGGIL');
 
   hideMessage(message);
 
