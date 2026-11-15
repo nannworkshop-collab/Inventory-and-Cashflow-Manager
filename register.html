@@ -44,19 +44,10 @@
   <p id="debug-status" style="color: red;">
   HTML berhasil dimuat, menunggu JavaScript...
   </p>
-  <script type="module">
-  const debug = document.getElementById('debug-status');
-
-  import('./assets/js/register.js')
-    .then(() => {
-      debug.textContent = 'REGISTER.JS BERHASIL DIMUAT';
-      debug.style.color = 'green';
-    })
-    .catch((error) => {
-      debug.textContent = 'ERROR: ' + error.message;
-      debug.style.color = 'red';
-      console.error(error);
-    });
-</script>
+  <script>
+  document.getElementById('debug-status').textContent =
+    'JAVASCRIPT DASAR BERJALAN';
+  document.getElementById('debug-status').style.color = 'green';
+  </script>
 </body>
 </html>
