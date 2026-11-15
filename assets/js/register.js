@@ -9,6 +9,18 @@ const message = $('#form-message');
 const button = $('#submit-btn');
 let session = null;
 
+const debug = $('#debug-status');
+
+if (debug) {
+  debug.textContent = 'register.js berhasil dijalankan.';
+  debug.style.color = 'green';
+}
+
+console.log('REGISTER SCRIPT LOADED');
+console.log('FORM:', form);
+console.log('MESSAGE:', message);
+console.log('SUPABASE CONFIGURED:', isConfigured);
+
 form.addEventListener('submit', async (event) => {
   event.preventDefault();
   hideMessage(message);
