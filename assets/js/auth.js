@@ -1,5 +1,6 @@
 // assets/js/auth.js — Login, registrasi, session, dan konteks bisnis aktif.
 // Dipakai oleh: login.js, register.js, dan semua halaman yang dilindungi (lewat requireBusiness).
+
 import { supabase } from './supabaseClient.js';
 
 const PENDING_KEY = 'icm_pending_business';
@@ -9,9 +10,7 @@ export async function signUp(email, password, fullName) {
     email,
     password,
     options: {
-      data: {
-        full_name: fullName
-      },
+      data: { full_name: fullName },
       emailRedirectTo:
         'https://nannworkshop-collab.github.io/Inventory-and-Cashflow-Manager/login.html'
     },
@@ -22,10 +21,16 @@ export async function signUp(email, password, fullName) {
 }
 
 export async function signIn(email, password) {
-  const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email,
+    password
+  });
+
   if (error) throw error;
   return data;
 }
+
+
 
 // Jika konfirmasi email aktif di Supabase, data.session = null sampai email dikonfirmasi.
 export async function signUp(email, password, fullName) {
@@ -43,7 +48,7 @@ export async function signOut() {
 
 export async function redirectIfLoggedIn() {
   const session = await getSession();
-  if (session) window.location.replace('index.html');
+  if (session) window.location.replace('dashboard.html');
   return session;
 }
 
