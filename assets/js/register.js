@@ -32,8 +32,8 @@ form.addEventListener('submit', async (event) => {
     if (!session) {
       const data = await signUp(
         form.elements.email.value.trim(), form.elements.password.value, form.elements.full_name.value.trim());
-        console.log(SIGNUP RESULT:', data);
-        console.log(SESSION:', data.session);
+        console.log('SIGNUP RESULT:', data);
+        console.log('SESSION:', data.session);
       if (!data.session) { // konfirmasi email aktif
         savePendingBusiness(businessName);
         form.reset();
