@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Laporan — Inventory &amp; Cashflow Manager</title>
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Lewati ke konten</a>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Navigasi utama"></aside>
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+    <div class="main">
+      <header class="topbar">
+        <button class="btn btn--secondary btn--sm menu-toggle" id="menu-toggle" type="button" aria-controls="sidebar" aria-expanded="false">Menu</button>
+        <strong id="business-name"></strong>
+      </header>
+      <main class="content" id="main">
+        <header class="page-header"><h1>Laporan</h1></header>
+        <div id="page-message" class="alert" hidden></div>
+        <section class="card" aria-labelledby="form-title">
+          <h2 class="card__title" id="form-title">Pilih laporan</h2>
+          <form id="report-form">
+            <div class="form-row">
+              <div class="form-group"><label class="form-label" for="report-type">Jenis laporan</label>
+                <select class="form-select" id="report-type" name="report_type">
+                  <option value="sales">Laporan penjualan</option><option value="expenses">Laporan pengeluaran</option>
+                  <option value="stock">Laporan stok</option><option value="cashflow">Laporan arus kas</option>
+                </select></div>
+            </div>
+            <div class="form-row" id="date-fields">
+              <div class="form-group"><label class="form-label" for="r-from">Dari tanggal</label><input class="form-input" id="r-from" name="from" type="date"></div>
+              <div class="form-group"><label class="form-label" for="r-to">Sampai tanggal</label><input class="form-input" id="r-to" name="to" type="date"></div>
+            </div>
+            <div class="form-actions"><button class="btn btn--primary" id="show-btn" type="submit">Tampilkan</button></div>
+          </form>
+        </section>
+        <div id="report-result" hidden>
+          <header class="page-header report-header">
+            <h2 id="report-title">Laporan</h2>
+            <div><span class="text-muted" id="row-count"></span> <button class="btn btn--secondary btn--sm" id="export-btn" type="button">Export CSV</button></div>
+          </header>
+          <section class="grid-cards" id="summary" aria-label="Ringkasan laporan"></section>
+          <section class="card" aria-label="Isi laporan">
+            <p class="empty-state" id="report-state" hidden>Tidak ada data pada pilihan ini.</p>
+            <div class="table-wrap" id="report-wrap" hidden>
+              <table class="table"><thead id="report-head"></thead><tbody id="report-body"></tbody></table>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+  </div>
+  <script type="module" src="assets/js/reports.js"></script>
+</body>
+</html>
