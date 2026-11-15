@@ -8,6 +8,11 @@ const form = $('#register-form');
 const message = $('#form-message');
 const button = $('#submit-btn');
 let session = null;
+console.log('REGISTER.JS AKTIF');
+
+form.addEventListener('submit', () => {
+  alert('EVENT SUBMIT TERPANGGIL');
+});
 
 const debug = $('#debug-status');
 
