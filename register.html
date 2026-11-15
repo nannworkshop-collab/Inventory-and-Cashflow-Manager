@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Daftar — Inventory &amp; Cashflow Manager</title>
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+</head>
+<body class="auth-page">
+  <a class="skip-link" href="#main">Lewati ke konten</a>
+  <main id="main" class="auth-card">
+    <header class="auth-card__header">
+      <h1 class="auth-card__title" id="page-title">Daftar</h1>
+      <p class="text-muted" id="page-subtitle">Buat akun dan bisnis pertamamu.</p>
+    </header>
+    <div id="form-message" class="alert" hidden></div>
+    <form id="register-form">
+      <fieldset class="form-fieldset" id="account-fields">
+        <legend class="visually-hidden">Data akun</legend>
+        <div class="form-group">
+          <label class="form-label" for="full_name">Nama lengkap</label>
+          <input class="form-input" id="full_name" name="full_name" type="text" autocomplete="name" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="email">Email</label>
+          <input class="form-input" id="email" name="email" type="email" autocomplete="email" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="password">Password</label>
+          <input class="form-input" id="password" name="password" type="password" autocomplete="new-password" minlength="8" required aria-describedby="password-hint">
+          <p class="form-hint" id="password-hint">Minimal 8 karakter.</p>
+        </div>
+      </fieldset>
+      <div class="form-group">
+        <label class="form-label" for="business_name">Nama bisnis</label>
+        <input class="form-input" id="business_name" name="business_name" type="text" autocomplete="organization" required>
+      </div>
+      <button class="btn btn--primary btn--block" id="submit-btn" type="submit">Daftar</button>
+    </form>
+    <p class="auth-card__footer">Sudah punya akun? <a href="login.html">Masuk</a></p>
+  </main>
+  <script type="module" src="assets/js/register.js"></script>
+</body>
+</html>
