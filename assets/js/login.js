@@ -14,7 +14,7 @@ form.addEventListener('submit', async (event) => {
   setLoading(button, true, 'Masuk...');
   try {
     await signIn(form.elements.email.value.trim(), form.elements.password.value);
-    window.location.replace('index.html');
+    window.location.replace('dashboard.html');
   } catch (error) {
     showMessage(message, friendlyError(error));
   } finally {
