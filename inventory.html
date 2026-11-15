@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inventori — Inventory &amp; Cashflow Manager</title>
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Lewati ke konten</a>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Navigasi utama"></aside>
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+    <div class="main">
+      <header class="topbar">
+        <button class="btn btn--secondary btn--sm menu-toggle" id="menu-toggle" type="button" aria-controls="sidebar" aria-expanded="false">Menu</button>
+        <strong id="business-name"></strong>
+      </header>
+      <main class="content" id="main">
+        <header class="page-header">
+          <h1>Inventori</h1>
+          <button class="btn btn--primary" id="add-product" type="button">Tambah produk</button>
+        </header>
+        <div id="page-message" class="alert" hidden></div>
+        <div class="toolbar">
+          <label class="visually-hidden" for="search">Cari produk</label>
+          <input class="form-input toolbar__search" id="search" type="search" placeholder="Cari nama atau SKU">
+        </div>
+        <section class="card" aria-label="Daftar produk">
+          <p class="loading-state" id="list-state">Memuat produk...</p>
+          <div class="table-wrap" id="table-wrap" hidden>
+            <table class="table">
+              <thead><tr>
+                <th scope="col">SKU</th><th scope="col">Nama</th><th scope="col" class="text-right">Harga beli</th>
+                <th scope="col" class="text-right">Harga jual</th><th scope="col" class="text-right">Stok</th>
+                <th scope="col" class="text-right">Min. stok</th><th scope="col">Status</th><th scope="col">Aksi</th>
+              </tr></thead>
+              <tbody id="product-body"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <dialog class="dialog" id="product-dialog" aria-labelledby="product-dialog-title">
+          <h2 id="product-dialog-title">Tambah produk</h2>
+          <div id="product-message" class="alert" hidden></div>
+          <form id="product-form">
+            <div class="form-group"><label class="form-label" for="sku">SKU</label><input class="form-input" id="sku" name="sku" type="text" required></div>
+            <div class="form-group"><label class="form-label" for="name">Nama produk</label><input class="form-input" id="name" name="name" type="text" required></div>
+            <div class="form-group"><label class="form-label" for="unit">Satuan</label><input class="form-input" id="unit" name="unit" type="text" value="pcs"></div>
+            <div class="form-group"><label class="form-label" for="buy_price">Harga beli (Rp)</label><input class="form-input" id="buy_price" name="buy_price" type="number" min="0" step="0.01" required></div>
+            <div class="form-group"><label class="form-label" for="sell_price">Harga jual (Rp)</label><input class="form-input" id="sell_price" name="sell_price" type="number" min="0" step="0.01" required></div>
+            <div class="form-group"><label class="form-label" for="min_stock">Minimum stok</label><input class="form-input" id="min_stock" name="min_stock" type="number" min="0" step="1" required></div>
+            <div id="initial-stock-group"><div class="form-group"><label class="form-label" for="initial_stock">Stok awal</label><input class="form-input" id="initial_stock" name="initial_stock" type="number" min="0" step="1" value="0" aria-describedby="initial_stock-hint"><p class="form-hint" id="initial_stock-hint">Tercatat di riwayat stok sebagai penyesuaian.</p></div></div>
+            <div class="form-group" id="active-group"><label><input id="is_active" name="is_active" type="checkbox"> Produk aktif (bisa dijual)</label></div>
+            <div class="dialog__actions">
+              <button class="btn btn--secondary" type="button" data-close>Batal</button>
+              <button class="btn btn--primary" id="product-submit" type="submit">Simpan</button>
+            </div>
+          </form>
+        </dialog>
+
+        <dialog class="dialog" id="adjust-dialog" aria-labelledby="adjust-title">
+          <h2 id="adjust-title">Sesuaikan stok</h2>
+          <div id="adjust-message" class="alert" hidden></div>
+          <form id="adjust-form">
+            <div class="form-group"><label class="form-label" for="qty_change">Perubahan stok</label><input class="form-input" id="qty_change" name="qty_change" type="number" step="1" required aria-describedby="qty_change-hint"><p class="form-hint" id="qty_change-hint">Positif untuk menambah, negatif untuk mengurangi (contoh: -3).</p></div>
+            <div class="form-group"><label class="form-label" for="note">Catatan</label><input class="form-input" id="note" name="note" type="text" placeholder="Contoh: stok opname"></div>
+            <div class="dialog__actions">
+              <button class="btn btn--secondary" type="button" data-close>Batal</button>
+              <button class="btn btn--primary" id="adjust-submit" type="submit">Simpan</button>
+            </div>
+          </form>
+        </dialog>
+
+        <dialog class="dialog dialog--wide" id="history-dialog" aria-labelledby="history-title">
+          <h2 id="history-title">Riwayat stok</h2>
+          <p class="loading-state" id="history-state">Memuat...</p>
+          <div class="table-wrap">
+            <table class="table">
+              <thead><tr><th scope="col">Waktu</th><th scope="col">Jenis</th><th scope="col" class="text-right">Perubahan</th><th scope="col">Catatan</th></tr></thead>
+              <tbody id="history-body"></tbody>
+            </table>
+          </div>
+          <div class="dialog__actions"><button class="btn btn--secondary" type="button" data-close>Tutup</button></div>
+        </dialog>
+      </main>
+    </div>
+  </div>
+  <script type="module" src="assets/js/inventory.js"></script>
+</body>
+</html>
