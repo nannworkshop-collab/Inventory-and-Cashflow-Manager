@@ -41,12 +41,19 @@
     </form>
     <p class="auth-card__footer">Sudah punya akun? <a href="login.html">Masuk</a></p>
   </main>
-  <script type="module" src="./assets/js/register.js"></script>
-</body>
-</html>
-  document.getElementById('debug-status').textContent =
-    'JAVASCRIPT DASAR BERJALAN';
-  document.getElementById('debug-status').style.color = 'green';
-  </script>
+  
+<script type="module">
+  const message = document.querySelector('#form-message');
+
+  import('./assets/js/register.js')
+    .catch((error) => {
+      console.error('REGISTER MODULE ERROR:', error);
+
+      message.className = 'alert alert--error';
+      message.textContent =
+        `JavaScript gagal dimuat: ${error.message}`;
+      message.hidden = false;
+    });
+</script>
 </body>
 </html>
